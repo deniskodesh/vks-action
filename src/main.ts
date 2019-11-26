@@ -49,6 +49,7 @@ async function createCluster() {
   }
 
 async function exportKubeconfig() {
+    await delay(600);
     core.exportVariable('KUBECONFIG', './config');
   }
 
@@ -56,6 +57,10 @@ async function exportKubeconfig() {
 async function kubectl() {
     await exec.exec('kubectl cluster-info');
     }
+
+async function delay(ms: number) {
+      return new Promise( resolve => setTimeout(resolve, ms) );
+  }
 
 async function run() {
     await pipInstall();
