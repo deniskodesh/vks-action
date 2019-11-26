@@ -12,5 +12,4 @@ Used for setting the target VKS cluster context which will be used by any [kubec
         userDomainName: ${{ secrets.USERDOMAINNAME }}
         userPassword: ${{ secrets.USERPASSWORD }}
         clusterName: ${{ secrets.CLUSTERNAME }}
-        test
 ```
