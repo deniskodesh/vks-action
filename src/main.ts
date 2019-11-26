@@ -56,7 +56,7 @@ async function kubectl() {
 
 async function run() {
     await pipInstall();
-    createCluster();
+    await createCluster();
     await exportKubeconfig();
     await kubectl();
 }
