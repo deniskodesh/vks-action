@@ -1,0 +1,18 @@
+name: Test VKS
+on: [push]
+
+jobs:
+  build:
+    name: Create
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create K8s
+        uses: deniskodesh/vks-action@master
+        with: 
+          authUrl: ${{ secrets.AUTHURL }}
+          projectName: ${{ secrets.PROJECTNAME }}
+          projectDomainName: ${{ secrets.PROJECTDOMAINNAME }}
+          userName: ${{ secrets.USERNAME }}
+          userDomainName: ${{ secrets.USERDOMAINNAME }}
+          userPassword: ${{ secrets.USERPASSWORD }}
+          clusterName: ${{ secrets.CLUSTERNAME }}
