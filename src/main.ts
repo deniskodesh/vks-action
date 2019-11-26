@@ -38,6 +38,13 @@ async function pipInstall() {
     core.debug(`openstack coe cluster config`);    
     }
 
+async function createCluster() {
+    let args5 = ['coe', 'cluster', 'create', clusterName, '--cluster-template k8s_1.14.1', '--master-count 1', '--node-count 1', '--master-flavor VC-2', '--flavor VC-2', '--keypair mykey', '--labels cloud_provider_tag=v1.14.0,coredns_tag=1.5.2,kube_tag=v1.14.1,heat_container_agent_tag=stein-stable'];
+    const toolRunner4 = new ToolRunner(openstackPath, args5, { failOnStdErr: false, ignoreReturnCode: true, silent: false });
+    await toolRunner4.exec();
+    core.debug(`openstack coe cluster create`);  
+  }
+
 async function exportKubeconfig() {
     core.exportVariable('KUBECONFIG', './config');
   }
@@ -49,6 +56,7 @@ async function kubectl() {
 
 async function run() {
     await pipInstall();
+    createCluster();
     await exportKubeconfig();
     await kubectl();
 }
